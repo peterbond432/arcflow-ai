@@ -6,20 +6,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* TEST ROUTE */
 app.get("/", (req, res) => {
-  res.send("API is running");
+  res.json({ message: "Backend is live 🚀" });
 });
 
-/* REAL API ROUTE */
-app.get("/api/message", (req, res) => {
-  res.json({
-    success: true,
-    message: "Hello from backend API 🚀",
-    time: new Date()
-  });
-});
+// IMPORTANT FOR DEPLOYMENT
+const PORT = process.env.PORT || 5000;
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
