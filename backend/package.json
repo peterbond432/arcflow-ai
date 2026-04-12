@@ -6,7 +6,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "cors": "^latest",
-    "express": "^latest"
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
   }
 }
