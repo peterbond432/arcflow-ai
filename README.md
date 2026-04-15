@@ -1,67 +1,46 @@
-## Foundry
+# 🚀 Arc Hello dApp
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A full-stack Web3 dApp built on Arc Testnet (Chain ID 5042002) using Foundry + ethers.js.
 
-Foundry consists of:
+---
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## 🧠 What this project does
 
-## Documentation
+This dApp allows users to:
+- Connect wallet (MetaMask / Rabby)
+- Read a message from a smart contract
+- Update the message on-chain using Arc network
 
-https://book.getfoundry.sh/
+It demonstrates a full Web3 workflow:
+Frontend ↔ Wallet ↔ Smart Contract ↔ Arc Testnet
 
-## Usage
+---
 
-### Build
+## 🛠 Tech Stack
 
-```shell
-$ forge build
-```
+- Solidity (Foundry)
+- Arc Testnet (Chain ID 5042002)
+- ethers.js v6
+- HTML / CSS / JavaScript
+- MetaMask / Rabby Wallet
 
-### Test
+---
 
-```shell
-$ forge test
-```
+## 📍 Smart Contract
 
-### Format
+Deployed Contract:
+0x80baff4f3741f16ea1691d6c7d2738e6f294ea0e
 
-```shell
-$ forge fmt
-```
+Functions:
+- `message()` → read stored message
+- `setMessage(string)` → update message on-chain
 
-### Gas Snapshots
+---
 
-```shell
-$ forge snapshot
-```
+## 🌐 Frontend
 
-### Anvil
+Run locally:
 
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
-First PR test
+```bash
+cd frontend
+python3 -m http.server 3000
