@@ -1,0 +1,55 @@
+<script>
+const CONTRACT_ADDRESS = "0x80baff4f3741f16ea1691d6c7d2738e6f294ea0e";
+
+const ABI = [
+  "function message() view returns (string)",
+  "function setMessage(string _msg)"
+];
+
+let provider;
+let signer;
+let contract;
+
+async function connect() {
+  if (!window.ethereum) {
+    alert("Install MetaMask or Rabby Wallet");
+    return;
+  }
+
+  provider = new ethers.BrowserProvider(window.ethereum);
+  await provider.send("eth_requestAccounts", []);
+
+  signer = await provider.getSigner();
+  contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
+
+  document.getElementById("status").innerText =
+    "Wallet Connected: " + await signer.getAddress();
+}
+
+async function readMessage() {
+  try {
+    const msg = await contract.message();
+    document.getElementById("status").innerText = "Message: " + msg;
+  } catch (err) {
+    console.log(err);
+    alert("Error reading message");
+  }
+}
+
+async function setMessage() {
+  try {
+    const tx = await contract.setMessage("Hello Arc Updated!");
+
+    document.getElementById("status").innerText =
+      "Tx sent: " + tx.hash;
+
+    await tx.wait();
+
+    document.getElementById("status").innerText =
+      "Message updated successfully!";
+  } catch (err) {
+    console.log(err);
+    alert("Transaction failed");
+  }
+}
+</script>

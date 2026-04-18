@@ -1,0 +1,92 @@
+{
+  "wallet": 0.976,
+  "transactions": [
+    {
+      "id": 1,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.998,
+      "timestamp": "2026-04-16T13:24:31.829Z"
+    },
+    {
+      "id": 2,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.996,
+      "timestamp": "2026-04-16T14:00:14.529Z"
+    },
+    {
+      "id": 3,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.994,
+      "timestamp": "2026-04-16T14:09:04.460Z"
+    },
+    {
+      "id": 4,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.992,
+      "timestamp": "2026-04-16T14:18:06.958Z"
+    },
+    {
+      "id": 5,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.99,
+      "timestamp": "2026-04-16T14:20:16.363Z"
+    },
+    {
+      "id": 6,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.988,
+      "timestamp": "2026-04-16T14:24:05.291Z"
+    },
+    {
+      "id": 7,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.986,
+      "timestamp": "2026-04-16T14:24:06.334Z"
+    },
+    {
+      "id": 8,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.984,
+      "timestamp": "2026-04-16T14:24:07.940Z"
+    },
+    {
+      "id": 9,
+      "cost": 0.002,
+      "result": "AI analysis complete",
+      "walletAfter": 0.982,
+      "timestamp": "2026-04-16T21:37:07.015Z"
+    },
+    {
+      "id": 10,
+      "cost": 0.002,
+      "paymentId": "pay_1776429021749",
+      "result": "AI analysis complete",
+      "walletAfter": 0.98,
+      "timestamp": "2026-04-17T12:30:21.757Z"
+    },
+    {
+      "id": 11,
+      "cost": 0.002,
+      "paymentId": "pay_1776429024218",
+      "result": "AI analysis complete",
+      "walletAfter": 0.978,
+      "timestamp": "2026-04-17T12:30:24.223Z"
+    },
+    {
+      "id": 12,
+      "cost": 0.002,
+      "paymentId": "pay_1776429647071",
+      "result": "AI analysis complete",
+      "walletAfter": 0.976,
+      "timestamp": "2026-04-17T12:40:47.080Z"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "wallet": 0.982,
+  "transactions": [
+    {
+      "id": 1,
+      "cost": 0.002,
+      "paymentId": "sim_1776441531876",
+      "status": "completed",
+      "result": "Short-term volatility expected ⚡",
+      "walletAfter": 0.998,
+      "timestamp": "2026-04-17T15:58:51.876Z"
+    },
+    {
+      "id": 2,
+      "cost": 0.002,
+      "paymentId": "sim_1776441587196",
+      "status": "completed",
+      "result": "Risk is moderate ⚖️",
+      "walletAfter": 0.996,
+      "timestamp": "2026-04-17T15:59:47.196Z"
+    },
+    {
+      "id": 3,
+      "cost": 0.002,
+      "paymentId": "sim_1776447747588",
+      "status": "completed",
+      "result": "Strong momentum detected 🚀",
+      "walletAfter": 0.994,
+      "timestamp": "2026-04-17T17:42:27.589Z"
+    },
+    {
+      "id": 4,
+      "cost": 0.002,
+      "paymentId": "sim_1776447748896",
+      "status": "completed",
+      "result": "Strong momentum detected 🚀",
+      "walletAfter": 0.992,
+      "timestamp": "2026-04-17T17:42:28.896Z"
+    },
+    {
+      "id": 5,
+      "cost": 0.002,
+      "paymentId": "sim_1776447749112",
+      "status": "completed",
+      "result": "Strong momentum detected 🚀",
+      "walletAfter": 0.99,
+      "timestamp": "2026-04-17T17:42:29.112Z"
+    },
+    {
+      "id": 6,
+      "cost": 0.002,
+      "paymentId": "sim_1776447749365",
+      "status": "completed",
+      "result": "Risk is moderate ⚖️",
+      "walletAfter": 0.988,
+      "timestamp": "2026-04-17T17:42:29.365Z"
+    },
+    {
+      "id": 7,
+      "cost": 0.002,
+      "paymentId": "sim_1776447749581",
+      "status": "completed",
+      "result": "Neutral market conditions 🧊",
+      "walletAfter": 0.986,
+      "timestamp": "2026-04-17T17:42:29.581Z"
+    },
+    {
+      "id": 8,
+      "cost": 0.002,
+      "paymentId": "sim_1776447749765",
+      "status": "completed",
+      "result": "Risk is moderate ⚖️",
+      "walletAfter": 0.984,
+      "timestamp": "2026-04-17T17:42:29.765Z"
+    },
+    {
+      "id": 9,
+      "cost": 0.002,
+      "paymentId": "sim_1776447749989",
+      "status": "completed",
+      "result": "Short-term volatility expected ⚡",
+      "walletAfter": 0.982,
+      "timestamp": "2026-04-17T17:42:29.989Z"
+    }
+  ]
+}
