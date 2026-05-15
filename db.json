@@ -1,86 +1,103 @@
 {
-  "wallet": 0.982,
-  "transactions": [
+  "wallet": 99.982,
+  "history": [
     {
-      "id": 1,
-      "cost": 0.002,
-      "paymentId": "sim_1776441531876",
-      "status": "completed",
-      "result": "Short-term volatility expected ⚡",
-      "walletAfter": 0.998,
-      "timestamp": "2026-04-17T15:58:51.876Z"
+      "id": 1778845986110,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.998,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845986110
     },
     {
-      "id": 2,
-      "cost": 0.002,
-      "paymentId": "sim_1776441587196",
-      "status": "completed",
-      "result": "Risk is moderate ⚖️",
-      "walletAfter": 0.996,
-      "timestamp": "2026-04-17T15:59:47.196Z"
+      "id": 1778845986612,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.996,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845986612
     },
     {
-      "id": 3,
-      "cost": 0.002,
-      "paymentId": "sim_1776447747588",
-      "status": "completed",
-      "result": "Strong momentum detected 🚀",
-      "walletAfter": 0.994,
-      "timestamp": "2026-04-17T17:42:27.589Z"
+      "id": 1778845986768,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.994,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845986768
     },
     {
-      "id": 4,
-      "cost": 0.002,
-      "paymentId": "sim_1776447748896",
-      "status": "completed",
-      "result": "Strong momentum detected 🚀",
-      "walletAfter": 0.992,
-      "timestamp": "2026-04-17T17:42:28.896Z"
+      "id": 1778845986932,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.992,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845986932
     },
     {
-      "id": 5,
-      "cost": 0.002,
-      "paymentId": "sim_1776447749112",
-      "status": "completed",
-      "result": "Strong momentum detected 🚀",
-      "walletAfter": 0.99,
-      "timestamp": "2026-04-17T17:42:29.112Z"
+      "id": 1778845987100,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.99,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845987100
     },
     {
-      "id": 6,
-      "cost": 0.002,
-      "paymentId": "sim_1776447749365",
-      "status": "completed",
-      "result": "Risk is moderate ⚖️",
-      "walletAfter": 0.988,
-      "timestamp": "2026-04-17T17:42:29.365Z"
+      "id": 1778845987310,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.988,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845987310
     },
     {
-      "id": 7,
-      "cost": 0.002,
-      "paymentId": "sim_1776447749581",
-      "status": "completed",
-      "result": "Neutral market conditions 🧊",
-      "walletAfter": 0.986,
-      "timestamp": "2026-04-17T17:42:29.581Z"
+      "id": 1778845987712,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.986,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845987712
     },
     {
-      "id": 8,
-      "cost": 0.002,
-      "paymentId": "sim_1776447749765",
-      "status": "completed",
-      "result": "Risk is moderate ⚖️",
-      "walletAfter": 0.984,
-      "timestamp": "2026-04-17T17:42:29.765Z"
+      "id": 1778845987885,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.984,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845987885
     },
     {
-      "id": 9,
-      "cost": 0.002,
-      "paymentId": "sim_1776447749989",
-      "status": "completed",
-      "result": "Short-term volatility expected ⚡",
-      "walletAfter": 0.982,
-      "timestamp": "2026-04-17T17:42:29.989Z"
+      "id": 1778845988049,
+      "type": "spend",
+      "amount": 0.002,
+      "walletAfter": 99.982,
+      "reason": "food",
+      "risk": 10,
+      "timestamp": 1778845988049
     }
-  ]
+  ],
+  "memory": {
+    "gamblePenalty": 0,
+    "safeBias": 0.44999999999999996,
+    "gambleCount": 0,
+    "foodCount": 9,
+    "lastActions": [
+      "food",
+      "food",
+      "food",
+      "food",
+      "food",
+      "food",
+      "food",
+      "food",
+      "food"
+    ]
+  }
 }

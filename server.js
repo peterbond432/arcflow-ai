@@ -1,84 +1,47 @@
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
-require("dotenv").config();
+
+const engine = require("./engine"); // IMPORTANT FIX
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-const DB_FILE = "./db.json";
-
-/* ================= DB ================= */
-function loadDB() {
-  if (!fs.existsSync(DB_FILE)) {
-    const init = { wallet: 1.0, transactions: [] };
-    fs.writeFileSync(DB_FILE, JSON.stringify(init, null, 2));
-    return init;
+// =====================
+// STATE ROUTE
+// =====================
+app.get("/state", (req, res) => {
+  try {
+    res.json(engine.getState());
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: err.message
+    });
   }
-  return JSON.parse(fs.readFileSync(DB_FILE));
-}
-
-function saveDB(db) {
-  fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2));
-}
-
-/* ================= SIMPLE AGENT ================= */
-function runAI() {
-  const insights = [
-    "Market is slightly bullish 📈",
-    "Risk is moderate ⚖️",
-    "Short-term volatility expected ⚡",
-    "Strong momentum detected 🚀",
-    "Neutral market conditions 🧊"
-  ];
-
-  return insights[Math.floor(Math.random() * insights.length)];
-}
-
-/* ================= ROUTES ================= */
-app.get("/", (req, res) => {
-  res.send("🚀 ArcFlow Backend Running");
 });
 
+// =====================
+// RUN AGENT ROUTE
+// =====================
 app.post("/run-agent", (req, res) => {
-  const cost = 0.002;
-
-  const db = loadDB();
-
-  if (db.wallet < cost) {
-    return res.json({ error: "Insufficient wallet balance" });
+  try {
+    const result = engine.runAgent();
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: err.message
+    });
   }
-
-  const result = runAI();
-
-  db.wallet -= cost;
-
-  const tx = {
-    id: db.transactions.length + 1,
-    cost,
-    result,
-    walletAfter: db.wallet,
-    timestamp: new Date().toISOString()
-  };
-
-  db.transactions.push(tx);
-  saveDB(db);
-
-  res.json({
-    result,
-    wallet: db.wallet,
-    transaction: tx,
-    totalTransactions: db.transactions.length
-  });
 });
 
-app.get("/transactions", (req, res) => {
-  const db = loadDB();
-  res.json(db.transactions);
-});
+// =====================
+// START SERVER
+// =====================
+const PORT = 5000;
 
-/* ================= START SERVER ================= */
-app.listen(5000, () => {
-  console.log("🚀 ArcFlow Agent running on port 5000");
+app.listen(PORT, () => {
+  console.log(`🚀 ArcFlow Live AI Dashboard running on port ${PORT}`);
 });
