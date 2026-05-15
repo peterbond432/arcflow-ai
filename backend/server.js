@@ -6,123 +6,157 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// =========================
-// DB FILE
-// =========================
-const DB_FILE = "./db.json";
+const DB_PATH = "./backend/db.json";
 
-// =========================
-// INIT DB IF NOT EXISTS
-// =========================
+// ------------------ LOAD DB ------------------
 function loadDB() {
-  if (!fs.existsSync(DB_FILE)) {
-    const init = {
+  if (!fs.existsSync(DB_PATH)) {
+    const initial = {
       wallet: 100,
       history: [],
       memory: {
-        gamblePenalty: 0,
-        safeBias: 0,
+        safeBias: 0.5,
         gambleCount: 0,
         foodCount: 0,
-        lastActions: []
+        risk: 0
       }
     };
-    fs.writeFileSync(DB_FILE, JSON.stringify(init, null, 2));
-    return init;
+    fs.writeFileSync(DB_PATH, JSON.stringify(initial, null, 2));
   }
 
-  return JSON.parse(fs.readFileSync(DB_FILE, "utf8"));
+  return JSON.parse(fs.readFileSync(DB_PATH));
 }
 
-function saveDB(db) {
-  fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2));
+// ------------------ SAVE DB ------------------
+function saveDB(data) {
+  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
 }
 
-// =========================
-// AGENT ENGINE (FIXED SAFE VERSION)
-// =========================
-function runAgent() {
-  const db = loadDB();
-
-  const actions = [
-    { reason: "food", cost: 0.002, risk: 10 },
-    { reason: "gamble", cost: 0.01, risk: 60 }
-  ];
-
-  const pick = actions[Math.floor(Math.random() * actions.length)];
-
-  // prevent crash
-  if (!db.wallet) db.wallet = 100;
-  if (!db.memory) db.memory = {};
-
-  if (db.wallet < pick.cost) {
-    return {
-      success: false,
-      error: "Insufficient funds",
-      wallet: db.wallet
-    };
-  }
-
-  db.wallet = +(db.wallet - pick.cost).toFixed(3);
-
-  // memory tracking (SAFE FIX)
-  db.memory.safeBias = db.memory.safeBias || 0;
-  db.memory.gamblePenalty = db.memory.gamblePenalty || 0;
-  db.memory.lastActions = db.memory.lastActions || [];
-
-  if (pick.reason === "food") db.memory.safeBias += 0.05;
-  if (pick.reason === "gamble") db.memory.gamblePenalty += 0.1;
-
-  db.memory.lastActions.unshift(pick.reason);
-  db.memory.lastActions = db.memory.lastActions.slice(0, 10);
-
-  const tx = {
-    id: Date.now(),
-    type: "spend",
-    amount: pick.cost,
-    walletAfter: db.wallet,
-    reason: pick.reason,
-    risk: pick.risk,
-    timestamp: Date.now()
-  };
-
-  db.history.push(tx);
-  saveDB(db);
-
-  return {
-    success: true,
-    tx,
-    wallet: db.wallet,
-    memory: db.memory
-  };
-}
-
-// =========================
-// API ROUTES
-// =========================
-
-// health check
-app.get("/", (req, res) => {
-  res.json({ status: "ArcFlow backend running 🚀" });
-});
-
-// get state
+// ------------------ GET STATE ------------------
 app.get("/state", (req, res) => {
   const db = loadDB();
   res.json(db);
 });
 
-// run agent
-app.post("/run-agent", (req, res) => {
-  const result = runAgent();
-  res.json(result);
+// ------------------ RUN AGENT ------------------
+app.post("/run", (req, res) => {
+  const db = loadDB();
+
+  const rand = Math.random();
+
+  let action, amount, risk;
+
+  if (rand < db.memory.safeBias) {
+    action = "food";
+    amount = 0.002;
+    risk = 10;
+    db.memory.foodCount++;
+    db.memory.safeBias += 0.05;
+  } else {
+    action = "gamble";
+    amount = 0.01;
+    risk = 60;
+    db.memory.gambleCount++;
+    db.memory.safeBias -= 0.03;
+  }
+
+  // clamp safeBias between 0 and 1
+  if (db.memory.safeBias > 1) db.memory.safeBias = 1;
+  if (db.memory.safeBias < 0) db.memory.safeBias = 0;
+
+  db.wallet -= amount;
+  db.memory.risk += risk * 0.01;
+
+  db.history.push({
+    action,
+    amount,
+    risk,
+    time: new Date().toISOString()
+  });
+
+  // keep last 20 transactions
+  if (db.history.length > 20) {
+    db.history.shift();
+  }
+
+  saveDB(db);
+
+  res.json({
+    success: true,
+    state: db
+  });
 });
 
-// =========================
-// START SERVER (RENDER SAFE)
-// =========================
+// ------------------ RUN MULTI AGENTS ------------------
+app.post("/run-multi", (req, res) => {
+  const db = loadDB();
+
+  for (let i = 0; i < 5; i++) {
+    const rand = Math.random();
+
+    let action, amount, risk;
+
+    if (rand < db.memory.safeBias) {
+      action = "food";
+      amount = 0.002;
+      risk = 10;
+      db.memory.foodCount++;
+      db.memory.safeBias += 0.02;
+    } else {
+      action = "gamble";
+      amount = 0.01;
+      risk = 60;
+      db.memory.gambleCount++;
+      db.memory.safeBias -= 0.02;
+    }
+
+    if (db.memory.safeBias > 1) db.memory.safeBias = 1;
+    if (db.memory.safeBias < 0) db.memory.safeBias = 0;
+
+    db.wallet -= amount;
+    db.memory.risk += risk * 0.01;
+
+    db.history.push({
+      action,
+      amount,
+      risk,
+      time: new Date().toISOString()
+    });
+
+    if (db.history.length > 20) {
+      db.history.shift();
+    }
+  }
+
+  saveDB(db);
+
+  res.json({
+    success: true,
+    state: db
+  });
+});
+
+// ------------------ RESET ------------------
+app.post("/reset", (req, res) => {
+  const resetData = {
+    wallet: 100,
+    history: [],
+    memory: {
+      safeBias: 0.5,
+      gambleCount: 0,
+      foodCount: 0,
+      risk: 0
+    }
+  };
+
+  saveDB(resetData);
+
+  res.json({ success: true, state: resetData });
+});
+
+// ------------------ START SERVER ------------------
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log("🚀 ArcFlow backend running on port", PORT);
+app.listen(PORT, () => {
+  console.log(`🚀 ArcFlow backend running on port ${PORT}`);
 });

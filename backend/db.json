@@ -1,5 +1,5 @@
 {
-  "wallet": 99.93,
+  "wallet": 99.92,
   "history": [
     {
       "id": 1778870585195,
@@ -99,24 +99,33 @@
       "reason": "gamble",
       "risk": 60,
       "timestamp": 1778871953300
+    },
+    {
+      "id": 1778872281127,
+      "type": "spend",
+      "amount": 0.01,
+      "walletAfter": 99.92,
+      "reason": "gamble",
+      "risk": 60,
+      "timestamp": 1778872281127
     }
   ],
   "memory": {
-    "gamblePenalty": 0.6,
+    "gamblePenalty": 0.7,
     "safeBias": 0.25,
     "gambleCount": 0,
     "foodCount": 0,
     "lastActions": [
       "gamble",
-      "food",
       "gamble",
       "food",
       "gamble",
-      "gamble",
       "food",
       "gamble",
       "gamble",
-      "food"
+      "food",
+      "gamble",
+      "gamble"
     ]
   }
 }
