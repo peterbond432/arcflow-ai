@@ -1,281 +1,119 @@
 {
-  "wallet": 99.814,
+  "wallet": 99.93,
   "history": [
     {
-      "id": 1778847618521,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.99,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778847618521
-    },
-    {
-      "id": 1778847619389,
+      "id": 1778870585195,
       "type": "spend",
       "amount": 0.002,
-      "walletAfter": 99.988,
+      "walletAfter": 99.998,
       "reason": "food",
       "risk": 10,
-      "timestamp": 1778847619389
+      "timestamp": 1778870585195
     },
     {
-      "id": 1778847619564,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.978,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778847619564
-    },
-    {
-      "id": 1778847619781,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.968,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778847619781
-    },
-    {
-      "id": 1778847686545,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.958,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778847686545
-    },
-    {
-      "id": 1778847686766,
+      "id": 1778870585414,
       "type": "spend",
       "amount": 0.002,
-      "walletAfter": 99.956,
+      "walletAfter": 99.996,
       "reason": "food",
       "risk": 10,
-      "timestamp": 1778847686766
+      "timestamp": 1778870585414
     },
     {
-      "id": 1778847687407,
+      "id": 1778870585927,
       "type": "spend",
       "amount": 0.01,
-      "walletAfter": 99.946,
+      "walletAfter": 99.986,
       "reason": "gamble",
       "risk": 60,
-      "timestamp": 1778847687407
+      "timestamp": 1778870585927
     },
     {
-      "id": 1778847687668,
+      "id": 1778870586095,
       "type": "spend",
       "amount": 0.01,
-      "walletAfter": 99.936,
+      "walletAfter": 99.976,
       "reason": "gamble",
       "risk": 60,
-      "timestamp": 1778847687668
+      "timestamp": 1778870586095
     },
     {
-      "id": 1778847687897,
+      "id": 1778870586313,
       "type": "spend",
       "amount": 0.002,
-      "walletAfter": 99.934,
+      "walletAfter": 99.974,
       "reason": "food",
       "risk": 10,
-      "timestamp": 1778847687897
+      "timestamp": 1778870586313
     },
     {
-      "id": 1778848527268,
-      "type": "spend",
-      "amount": 0.002,
-      "walletAfter": 99.932,
-      "reason": "food",
-      "risk": 10,
-      "timestamp": 1778848527268
-    },
-    {
-      "id": 1778848869205,
+      "id": 1778871112209,
       "type": "spend",
       "amount": 0.01,
-      "walletAfter": 99.922,
+      "walletAfter": 99.964,
       "reason": "gamble",
       "risk": 60,
-      "timestamp": 1778848869205
+      "timestamp": 1778871112209
     },
     {
-      "id": 1778848869334,
-      "type": "spend",
-      "amount": 0.002,
-      "walletAfter": 99.92,
-      "reason": "food",
-      "risk": 10,
-      "timestamp": 1778848869334
-    },
-    {
-      "id": 1778848869471,
+      "id": 1778871413224,
       "type": "spend",
       "amount": 0.01,
-      "walletAfter": 99.91,
+      "walletAfter": 99.954,
       "reason": "gamble",
       "risk": 60,
-      "timestamp": 1778848869471
+      "timestamp": 1778871413224
     },
     {
-      "id": 1778848869633,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.9,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778848869633
-    },
-    {
-      "id": 1778848869791,
+      "id": 1778871422698,
       "type": "spend",
       "amount": 0.002,
-      "walletAfter": 99.898,
+      "walletAfter": 99.952,
       "reason": "food",
       "risk": 10,
-      "timestamp": 1778848869791
+      "timestamp": 1778871422698
     },
     {
-      "id": 1778848870018,
-      "type": "spend",
-      "amount": 0.002,
-      "walletAfter": 99.896,
-      "reason": "food",
-      "risk": 10,
-      "timestamp": 1778848870018
-    },
-    {
-      "id": 1778848870771,
-      "type": "spend",
-      "amount": 0.002,
-      "walletAfter": 99.894,
-      "reason": "food",
-      "risk": 10,
-      "timestamp": 1778848870771
-    },
-    {
-      "id": 1778848892651,
+      "id": 1778871422866,
       "type": "spend",
       "amount": 0.01,
-      "walletAfter": 99.884,
+      "walletAfter": 99.942,
       "reason": "gamble",
       "risk": 60,
-      "timestamp": 1778848892651
+      "timestamp": 1778871422866
     },
     {
-      "id": 1778867495864,
+      "id": 1778871423087,
       "type": "spend",
       "amount": 0.002,
-      "walletAfter": 99.882,
+      "walletAfter": 99.94,
       "reason": "food",
       "risk": 10,
-      "timestamp": 1778867495864
+      "timestamp": 1778871423087
     },
     {
-      "id": 1778867496718,
-      "type": "spend",
-      "amount": 0.002,
-      "walletAfter": 99.88,
-      "reason": "food",
-      "risk": 10,
-      "timestamp": 1778867496718
-    },
-    {
-      "id": 1778867496914,
+      "id": 1778871953300,
       "type": "spend",
       "amount": 0.01,
-      "walletAfter": 99.87,
+      "walletAfter": 99.93,
       "reason": "gamble",
       "risk": 60,
-      "timestamp": 1778867496914
-    },
-    {
-      "id": 1778867497126,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.86,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778867497126
-    },
-    {
-      "id": 1778867497338,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.85,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778867497338
-    },
-    {
-      "id": 1778867497569,
-      "type": "spend",
-      "amount": 0.002,
-      "walletAfter": 99.848,
-      "reason": "food",
-      "risk": 10,
-      "timestamp": 1778867497569
-    },
-    {
-      "id": 1778867497843,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.838,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778867497843
-    },
-    {
-      "id": 1778867498059,
-      "type": "spend",
-      "amount": 0.002,
-      "walletAfter": 99.836,
-      "reason": "food",
-      "risk": 10,
-      "timestamp": 1778867498059
-    },
-    {
-      "id": 1778867498272,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.826,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778867498272
-    },
-    {
-      "id": 1778867498639,
-      "type": "spend",
-      "amount": 0.01,
-      "walletAfter": 99.816,
-      "reason": "gamble",
-      "risk": 60,
-      "timestamp": 1778867498639
-    },
-    {
-      "id": 1778867498865,
-      "type": "spend",
-      "amount": 0.002,
-      "walletAfter": 99.814,
-      "reason": "food",
-      "risk": 10,
-      "timestamp": 1778867498865
+      "timestamp": 1778871953300
     }
   ],
   "memory": {
-    "gamblePenalty": 1.6000000000000003,
-    "safeBias": 0.65,
+    "gamblePenalty": 0.6,
+    "safeBias": 0.25,
     "gambleCount": 0,
     "foodCount": 0,
     "lastActions": [
-      "food",
-      "gamble",
       "gamble",
       "food",
       "gamble",
       "food",
       "gamble",
+      "gamble",
+      "food",
       "gamble",
       "gamble",
       "food"
