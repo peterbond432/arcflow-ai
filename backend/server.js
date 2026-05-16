@@ -1,160 +1,129 @@
 const express = require("express");
-const fs = require("fs");
 const cors = require("cors");
+const fs = require("fs");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const DB_PATH = "./backend/db.json";
+const DB_FILE = "./db.json";
 
-// ------------------ LOAD DB ------------------
+// ---------------- INIT DB ----------------
 function loadDB() {
-  if (!fs.existsSync(DB_PATH)) {
-    const initial = {
+  if (!fs.existsSync(DB_FILE)) {
+    const init = {
       wallet: 100,
       history: [],
       memory: {
         safeBias: 0.5,
         gambleCount: 0,
-        foodCount: 0,
-        risk: 0
+        foodCount: 0
       }
     };
-    fs.writeFileSync(DB_PATH, JSON.stringify(initial, null, 2));
+    fs.writeFileSync(DB_FILE, JSON.stringify(init, null, 2));
+    return init;
   }
 
-  return JSON.parse(fs.readFileSync(DB_PATH));
+  return JSON.parse(fs.readFileSync(DB_FILE));
 }
 
-// ------------------ SAVE DB ------------------
-function saveDB(data) {
-  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+function saveDB(db) {
+  fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2));
 }
 
-// ------------------ GET STATE ------------------
+// ---------------- ROOT ROUTE ----------------
+app.get("/", (req, res) => {
+  res.send("🚀 ArcFlow AI Backend Running");
+});
+
+// ---------------- STATE ----------------
 app.get("/state", (req, res) => {
-  const db = loadDB();
-  res.json(db);
+  try {
+    const db = loadDB();
+    res.json(db);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// ------------------ RUN AGENT ------------------
+// ---------------- RUN AGENT ----------------
 app.post("/run", (req, res) => {
-  const db = loadDB();
+  try {
+    const db = loadDB();
 
-  const rand = Math.random();
-
-  let action, amount, risk;
-
-  if (rand < db.memory.safeBias) {
-    action = "food";
-    amount = 0.002;
-    risk = 10;
-    db.memory.foodCount++;
-    db.memory.safeBias += 0.05;
-  } else {
-    action = "gamble";
-    amount = 0.01;
-    risk = 60;
-    db.memory.gambleCount++;
-    db.memory.safeBias -= 0.03;
-  }
-
-  // clamp safeBias between 0 and 1
-  if (db.memory.safeBias > 1) db.memory.safeBias = 1;
-  if (db.memory.safeBias < 0) db.memory.safeBias = 0;
-
-  db.wallet -= amount;
-  db.memory.risk += risk * 0.01;
-
-  db.history.push({
-    action,
-    amount,
-    risk,
-    time: new Date().toISOString()
-  });
-
-  // keep last 20 transactions
-  if (db.history.length > 20) {
-    db.history.shift();
-  }
-
-  saveDB(db);
-
-  res.json({
-    success: true,
-    state: db
-  });
-});
-
-// ------------------ RUN MULTI AGENTS ------------------
-app.post("/run-multi", (req, res) => {
-  const db = loadDB();
-
-  for (let i = 0; i < 5; i++) {
     const rand = Math.random();
-
-    let action, amount, risk;
+    let action, amount;
 
     if (rand < db.memory.safeBias) {
       action = "food";
       amount = 0.002;
-      risk = 10;
       db.memory.foodCount++;
-      db.memory.safeBias += 0.02;
+      db.memory.safeBias += 0.05;
     } else {
       action = "gamble";
       amount = 0.01;
-      risk = 60;
       db.memory.gambleCount++;
-      db.memory.safeBias -= 0.02;
+      db.memory.safeBias -= 0.03;
     }
 
-    if (db.memory.safeBias > 1) db.memory.safeBias = 1;
-    if (db.memory.safeBias < 0) db.memory.safeBias = 0;
-
     db.wallet -= amount;
-    db.memory.risk += risk * 0.01;
 
     db.history.push({
       action,
       amount,
-      risk,
       time: new Date().toISOString()
     });
 
-    if (db.history.length > 20) {
-      db.history.shift();
-    }
+    if (db.history.length > 20) db.history.shift();
+
+    saveDB(db);
+
+    res.json(db);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  saveDB(db);
-
-  res.json({
-    success: true,
-    state: db
-  });
 });
 
-// ------------------ RESET ------------------
-app.post("/reset", (req, res) => {
-  const resetData = {
-    wallet: 100,
-    history: [],
-    memory: {
-      safeBias: 0.5,
-      gambleCount: 0,
-      foodCount: 0,
-      risk: 0
+// ---------------- RUN MULTI ----------------
+app.post("/run-multi", (req, res) => {
+  try {
+    const db = loadDB();
+
+    for (let i = 0; i < 5; i++) {
+      const rand = Math.random();
+
+      let action, amount;
+
+      if (rand < db.memory.safeBias) {
+        action = "food";
+        amount = 0.002;
+        db.memory.foodCount++;
+        db.memory.safeBias += 0.02;
+      } else {
+        action = "gamble";
+        amount = 0.01;
+        db.memory.gambleCount++;
+        db.memory.safeBias -= 0.02;
+      }
+
+      db.wallet -= amount;
+
+      db.history.push({
+        action,
+        amount,
+        time: new Date().toISOString()
+      });
     }
-  };
 
-  saveDB(resetData);
+    saveDB(db);
 
-  res.json({ success: true, state: resetData });
+    res.json(db);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// ------------------ START SERVER ------------------
+// ---------------- START ----------------
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
