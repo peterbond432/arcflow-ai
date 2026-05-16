@@ -1,5 +1,116 @@
 {
-  "wallet": 100,
-  "history": [],
-  "agents": []
+  "wallet": 99.97999999999999,
+  "history": [
+    {
+      "agent": 1,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895129847
+    },
+    {
+      "agent": 2,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895129847
+    },
+    {
+      "agent": 3,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895129847
+    },
+    {
+      "agent": 4,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895129847
+    },
+    {
+      "agent": 5,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895129847
+    },
+    {
+      "agent": 1,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895148734
+    },
+    {
+      "agent": 2,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895148734
+    },
+    {
+      "agent": 3,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895148734
+    },
+    {
+      "agent": 4,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895148734
+    },
+    {
+      "agent": 5,
+      "action": "gamble",
+      "amount": 0.01,
+      "risk": 60,
+      "time": 1778895148734
+    }
+  ],
+  "agents": [
+    {
+      "id": 1,
+      "type": "risky",
+      "bias": 0.2724231108213533,
+      "profit": 0,
+      "wins": 1,
+      "losses": 1
+    },
+    {
+      "id": 2,
+      "type": "risky",
+      "bias": 0.904866037260232,
+      "profit": 0,
+      "wins": 1,
+      "losses": 1
+    },
+    {
+      "id": 3,
+      "type": "risky",
+      "bias": 0.82238959336085,
+      "profit": -0.02,
+      "losses": 2
+    },
+    {
+      "id": 4,
+      "type": "risky",
+      "bias": 0.8721315746665221,
+      "profit": 0,
+      "wins": 1,
+      "losses": 1
+    },
+    {
+      "id": 5,
+      "type": "safe",
+      "bias": 0.6063356615586855,
+      "profit": 0,
+      "losses": 1,
+      "wins": 1
+    }
+  ]
 }
