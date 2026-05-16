@@ -1,67 +1,95 @@
-function runAgent(state) {
-  if (!state) {
-    console.log("State missing — creating default");
-    state = {
+const fs = require("fs");
+const path = require("path");
+
+const dbPath = path.join(__dirname, "db.json");
+
+// 📦 Load DB
+function loadDB() {
+  if (!fs.existsSync(dbPath)) {
+    return {
       wallet: 100,
-      memory: {
-        safeBias: 0.5,
-        gamblePenalty: 1,
-        gambleCount: 0,
-        foodCount: 0,
-        lastActions: []
-      },
-      history: []
+      history: [],
+      agents: [],
     };
   }
-
-  if (!state.memory) {
-    state.memory = {
-      safeBias: 0.5,
-      gamblePenalty: 1,
-      gambleCount: 0,
-      foodCount: 0,
-      lastActions: []
-    };
-  }
-
-  const memory = state.memory;
-
-  // AI decision
-  let decision = Math.random() < memory.safeBias ? "food" : "gamble";
-
-  let amount = decision === "food" ? 0.002 : 0.01;
-  let risk = decision === "food" ? 10 : 60;
-
-  state.wallet -= amount;
-
-  const tx = {
-    id: Date.now(),
-    type: "spend",
-    amount,
-    walletAfter: state.wallet,
-    reason: decision,
-    risk,
-    timestamp: Date.now()
-  };
-
-  state.history.push(tx);
-
-  // learning
-  memory.lastActions.push(decision);
-  if (memory.lastActions.length > 10) memory.lastActions.shift();
-
-  if (decision === "gamble") {
-    memory.gambleCount++;
-    memory.safeBias -= 0.02;
-  } else {
-    memory.foodCount++;
-    memory.safeBias += 0.02;
-  }
-
-  // clamp values
-  memory.safeBias = Math.max(0.1, Math.min(0.9, memory.safeBias));
-
-  return state;
+  return JSON.parse(fs.readFileSync(dbPath));
 }
 
-module.exports = { runAgent };
+// 💾 Save DB
+function saveDB(db) {
+  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+}
+
+// 🧠 INIT AGENTS
+function initAgents(db) {
+  if (!db.agents || db.agents.length === 0) {
+    db.agents = Array.from({ length: 5 }).map((_, i) => ({
+      id: i + 1,
+      type: Math.random() > 0.5 ? "risky" : "safe",
+      bias: Math.random(),
+      profit: 0,
+    }));
+  }
+}
+
+// 🎯 DECISION ENGINE
+function decide(agent) {
+  const rand = Math.random();
+
+  if (agent.type === "risky") {
+    return rand + agent.bias > 0.6 ? "gamble" : "food";
+  } else {
+    return rand + agent.bias > 0.8 ? "gamble" : "food";
+  }
+}
+
+// ⚙️ RUN ONE AGENT
+function runAgent(agent, db) {
+  const action = decide(agent);
+
+  let amount = action === "gamble" ? 0.01 : 0.002;
+  let risk = action === "gamble" ? 60 : 10;
+
+  if (action === "gamble") {
+    const win = Math.random() > 0.5;
+
+    if (win) {
+      db.wallet += amount;
+      agent.profit += amount;
+      agent.wins = (agent.wins || 0) + 1;
+    } else {
+      db.wallet -= amount;
+      agent.profit -= amount;
+      agent.losses = (agent.losses || 0) + 1;
+    }
+  } else {
+    db.wallet -= amount;
+    agent.profit -= amount;
+  }
+
+  db.history.push({
+    agent: agent.id,
+    action,
+    amount,
+    risk,
+    time: Date.now(),
+  });
+
+  db.history = db.history.slice(-100);
+}
+
+// 🚀 MAIN RUN FUNCTION (THIS WAS MISSING!)
+function run() {
+  const db = loadDB();
+
+  initAgents(db);
+
+  db.agents.forEach((agent) => runAgent(agent, db));
+
+  saveDB(db);
+
+  return db;
+}
+
+// ✅ EXPORT (THIS FIXES YOUR ERROR)
+module.exports = { run };
